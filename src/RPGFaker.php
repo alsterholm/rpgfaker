@@ -63,6 +63,8 @@ class RPGFaker
     /**
      * Construct a new RPGFaker instance, overwriting
      * any options specified by the user.
+     * 
+     * @param $options array
      */
     public function __construct($options = [])
     {
@@ -89,7 +91,12 @@ class RPGFaker
         }
     }
 
-    public function setOptions($options = []) {
+    /**
+     * Set new options.
+     * 
+     * @param $options array
+     */
+    public function setOptions(array $options = []) {
         $this->options = array_merge($this->options, $options);
     }
 }

@@ -1,0 +1,20 @@
+{
+    "name": "andreasindal/rpgfaker",
+    "description": "RPGFaker is a library to generate names for your fantasy games.",
+    "keywords": ["rpg", "faker", "fantasy", "name", "generator"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Indal",
+            "email": "andreas@rocketship.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RPGFaker\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0"
+    }
+}

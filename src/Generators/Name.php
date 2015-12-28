@@ -111,7 +111,7 @@ class Name implements Generator
         );
 
         # If duplicates are disabled, try to generate a new, available
-        # name. Maximum of 5 tries.
+        # name. Maximum of 5 tries, or as specified in the options.
         if (is_array($options['duplicates']) && $options['duplicates'][0] === false) {
             $n = isset($options['duplicates'][1]) ? $options['duplicates'][1] : 5;
 

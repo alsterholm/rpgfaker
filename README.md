@@ -85,7 +85,7 @@ echo $faker->name;
 
 // example output: Wogien
 
-$faker = new RPGFaker([
+$faker->setOptions([
     'count'  => 3
 ]);
 echo $faker->name;
@@ -111,7 +111,7 @@ echo $faker->name;
 
 // example output: Dirwog Greenhorn
 
-$faker = new RPGFaker([
+$faker->setOptions([
     'special' => false
 ]);
 echo $faker->name;

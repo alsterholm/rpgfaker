@@ -14,10 +14,16 @@ use RPGFaker\RPGFaker;
 
 $faker = new RPGFaker();
 echo $faker->name;
+echo $faker->town;
 
-// example output: Rildess Fazhria
+// Rildess Fazhria
+// Northfall
 ```
 
+## Names
+
+RPGFaker can generate character names for you. Listed below are options that can be passed to RPGFaker that
+let's you customize how your names are generated.
 
 ### Options
 
@@ -125,9 +131,9 @@ The first element in the duplicates option specifies whether or not duplicates s
 
 This setting can be particularly useful when generating large sets of names.
 
-## Future updates
+## Towns
 
-I will try to update RPGFaker regularly, and among the coming updates I plan to include both towns and items.
+RPGFaker can also generate town names for you. The only option for the town name generator is the `duplicates` option which is [described here](#duplicates-array).
 
 ## License
 

@@ -37,22 +37,15 @@ use RPGFaker\Assets\Prefixes;
 use RPGFaker\Assets\Specials;
 use RPGFaker\Assets\Suffices;
 use RPGFaker\Assets\Syllables;
-use RPGFaker\Interfaces\Generator;
 
 /**
  * RPGFaker’s name generator.
  * 
- * @author Andreas Indal <andreas@rocketship.se>
+ * @author  Andreas Indal <andreas@rocketship.se>
+ * @since   1.0.0
  */
-class Name implements Generator
+class Name extends Generator
 {
-    /**
-     * Cache to store used names.
-     * 
-     * @var array
-     */
-    protected $cache = [];
-
     /**
      * Generate a character name.
      * 
@@ -64,6 +57,7 @@ class Name implements Generator
         $syllables  = [];
         $prefixes   = [];
         $suffices   = [];
+        $n          = 0;
 
         switch ($options['race']) {
             case 'elf':
@@ -113,7 +107,7 @@ class Name implements Generator
         # If duplicates are disabled, try to generate a new, available
         # name. Maximum of 5 tries, or as specified in the options.
         if (is_array($options['duplicates']) && $options['duplicates'][0] === false) {
-            $n = isset($options['duplicates'][1]) ? $options['duplicates'][1] : 5;
+            $m = isset($options['duplicates'][1]) ? $options['duplicates'][1] : 5;
 
             do {
                 $name = $this->characterName(
@@ -124,7 +118,7 @@ class Name implements Generator
                 );
 
                 $n++;
-            } while ($this->checkAvailability($name) || $n === 5);
+            } while ($this->checkAvailability($name) === false && $n < $m);
         }
 
         return $this->beautify($name);
@@ -218,45 +212,5 @@ class Name implements Generator
         $name .= $suffices[rand(0, $n)];
 
         return $name;
-    }
-
-    /**
-     * Check if any of the names are in the cache,
-     * and if so, return false. Otherwise, add the
-     * names to the cache and return true.
-     * 
-     * @param $name string
-     * @return bool
-     */
-    protected function checkAvailability($name)
-    {
-        $names = explode(' ', $name);
-
-        foreach ($names as $name) {
-            if (in_array($name, $this->cache))
-                return false;
-        }
-
-        foreach ($names as $name) {
-            $this->cache[] = $name;
-        }
-
-        return true;
-    }
-
-    /**
-     * Beautify a name.
-     * 
-     * @param $name string
-     * @return string
-     */
-    protected function beautify($name)
-    {
-        # Remove any occurances of three letters in a row, (e.g. replace
-        # "nnn" with "nn").
-        $name = preg_replace('/(.)\1\1/', substr("$1", 0, 2), $name);
-
-        # Remove trailing spaces and transform each name to upper case.
-        return trim(ucwords(strtolower($name)));
     }
 }

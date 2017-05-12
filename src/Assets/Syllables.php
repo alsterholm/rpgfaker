@@ -6,7 +6,7 @@
  * @copyright   2015 Andreas Indal
  * @link        https://github.com/andreasindal/rpgfaker
  * @license     https://github.com/andreasindal/rpgfaker/blob/master/LICENSE
- * @version     1.0.0
+ * @version     1.1.0
  *
  * MIT LICENSE
  *

@@ -33,12 +33,14 @@
 namespace RPGFaker;
 
 use RPGFaker\Generators\Name as NameGenerator;
+use RPGFaker\Generators\Town as TownGenerator;
 
 /**
  * RPGFaker is a library that can generate names for
  * you to use in your fantasy games/fiction/whatever.
  * 
- * @author Andreas Indal <andreas@rocketship.se>
+ * @author  Andreas Indal <andreas@rocketship.se>
+ * @since   1.0.0
  */
 class RPGFaker
 {
@@ -52,7 +54,7 @@ class RPGFaker
         'length'        => 2,
         'count'         => 2,
         'special'       => 'random',
-        'duplicates'    => [false, 5],
+        'duplicates'    => [true, 5],
     ];
 
     /**
@@ -84,6 +86,13 @@ class RPGFaker
                     $this->nameGenerator = new NameGenerator();
 
                 return $this->nameGenerator->generate($this->options);
+                break;
+
+            case 'town':
+                if (!isset($this->townGenerator))
+                    $this->townGenerator = new TownGenerator();
+
+                return $this->townGenerator->generate($this->options);
                 break;
 
             default:
